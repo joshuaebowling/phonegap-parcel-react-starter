@@ -1,0 +1,21 @@
+node_modules
+www/.cache
+
+# Node
+npm-debug.log
+
+# Cordova
+/platforms
+/plugins
+
+# res
+resources/signing
+jsconfig.json
+.vscode/
+typings/
+
+.vscode
+.idea
+.cache
+
+hooks
