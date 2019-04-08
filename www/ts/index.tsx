@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/app';
+import { set as setDb } from "./services/db";
 
 var app: any = {
     // Application Constructor
@@ -15,20 +16,17 @@ var app: any = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         document.removeEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        var db = window.sqlitePlugin.openDatabase({
+            name: 'my.db',
+            location: 'default'
+        }, (d) => alert(JSON.stringify(d)), (e) => alert(JSON.stringify(e)));
         window.React = React;
-        ReactDom.render(<App />, document.getElementById("wrapperContainer"));	
-        },
+        setDb(db);
+        ReactDom.render(<App />, document.getElementById("wrapperContainer"));
+    },
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentEleComponentment.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
     }
 };
 
